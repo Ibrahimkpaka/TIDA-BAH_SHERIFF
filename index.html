@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sierraland Football Agency</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="Sierraland Football Agency - discover and represent Sierra Leonean football talent." />
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <div class="brand">
+        <svg width="44" height="44" viewBox="0 0 24 24" aria-hidden><rect width="24" height="24" rx="5" fill="#fff"/><path d="M6 18l6-12 6 12H6z" fill="#047857"/></svg>
+        <div>
+          <div style="font-weight:800;letter-spacing:0.2px">Sierraland Football Agency</div>
+          <div style="font-size:0.85rem;opacity:0.95">Representing talent across Sierra Leone</div>
+        </div>
+      </div>
+
+      <nav class="nav" aria-label="Main navigation">
+        <button data-route="home">Home</button>
+        <button data-route="players">Players</button>
+        <button data-route="matches">Matches</button>
+        <button data-route="about">About</button>
+        <button data-route="contact">Contact</button>
+        <a href="#" id="github" style="margin-left:8px;font-weight:700">GitHub</a>
+      </nav>
+
+      <div class="mobile-select">
+        <select id="mobileNav">
+          <option value="home">Home</option>
+          <option value="players">Players</option>
+          <option value="matches">Matches</option>
+          <option value="about">About</option>
+          <option value="contact">Contact</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" id="app">
+
+    <section id="page-home">
+      <div class="hero">
+        <img src="https://images.unsplash.com/photo-1517927033932-b3d18e9f8b6b?auto=format&fit=crop&w=1400&q=60" alt="football-banner" style="width:100%;height:260px;object-fit:cover" />
+        <div class="overlay">
+          <div class="text">
+            <h1>Discover and develop Sierra Leone football talent</h1>
+            <p>We connect players to clubs, scouts and international opportunities. Updated squads & fixtures below.</p>
+            <div style="margin-top:12px">
+              <button class="btn" id="cta-players">View Players</button>
+              <button class="btn" id="cta-fixtures" style="background:white;color:var(--brand);margin-left:8px">Fixtures</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <article class="card">
+          <h3 style="margin:0;">Latest News</h3>
+          <ul style="margin-top:8px;padding-left:18px">
+            <li>Player Mohamed invited to national trials. <span class="muted">Oct 2025</span></li>
+            <li>Partnership with Coastal Academy. <span class="muted">Sep 2025</span></li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3 style="margin:0;">Announcements</h3>
+          <p class="muted" style="margin-top:8px">Open trials for under-18 players — register via the Contact page.</p>
+        </article>
+
+        <article class="card">
+          <h3 style="margin:0;">Quick Links</h3>
+          <div style="margin-top:8px">
+            <button class="muted" style="background:none;border:0;padding:6px 0;text-align:left;width:100%" onclick="navigateTo('about')">About the Agency</button>
+            <a href="#" id="repoLink" onclick="event.preventDefault()">GitHub Repository</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="page-players" style="display:none">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+        <h2 style="margin:0">Players</h2>
+        <div class="muted">Profiles with history and position</div>
+      </div>
+
+      <div style="margin-top:12px" class="players-grid" id="playersGrid">
+        
+      </div>
+    </section>
+
+    <section id="page-matches" style="display:none">
+      <h2>Matches & Fixtures</h2>
+      <div style="margin-top:12px" class="card">
+        <table aria-label="Matches table">
+          <thead>
+            <tr><th>Date</th><th>Opponent</th><th>Venue</th><th>Time</th><th>Result</th></tr>
+          </thead>
+          <tbody id="matchesTableBody">
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="page-about" style="display:none">
+      <h2>About Us</h2>
+      <div class="card" style="margin-top:12px">
+        <h3 style="margin:6px 0">Our Mission</h3>
+        <p>To discover, train and represent Sierra Leone’s best football talent while creating pathways to professional clubs and international exposure.</p>
+
+        <h3 style="margin-top:12px">Vision</h3>
+        <p>A thriving Sierra Leonean football community supported by excellent player development and ethical representation.</p>
+
+        <h3 style="margin-top:12px">Team</h3>
+        <ul>
+          <li><strong>Samuel Koroma</strong> — Director</li>
+          <li><strong>Aisha Mansaray</strong> — Head Scout</li>
+          <li><strong>Coach Musa</strong> — Development Lead</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="page-contact" style="display:none">
+      <h2>Contact</h2>
+      <div style="display:grid;grid-template-columns:1fr;gap:12px;margin-top:12px">
+        <form class="card" id="contactForm" novalidate>
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" placeholder="Your full name" required />
+
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" required />
+
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" placeholder="How can we help?" required></textarea>
+
+          <div style="margin-top:12px;display:flex;gap:8px;align-items:center">
+            <button type="submit" class="btn">Send Message</button>
+            <button type="button" class="btn" style="background:#111827" id="copyEmail">Copy Email</button>
+            <div id="contactStatus" style="font-size:0.95rem"></div>
+          </div>
+        </form>
+
+        <aside class="card">
+          <h3 style="margin:0">Agency Contact Details</h3>
+          <p class="muted" style="margin-top:6px">Email: <strong>info@sierralandfa.example</strong></p>
+          <p class="muted">Phone: <strong>+232 77 000 000</strong></p>
+          <p class="muted">Address: 12 Football Way, Freetown, Sierra Leone</p>
+
+          <div style="margin-top:10px">
+            <strong>Follow</strong>
+            <div style="margin-top:6px;display:flex;gap:8px">
+              <a href="#" onclick="event.preventDefault()">Twitter</a>
+              <a href="#" onclick="event.preventDefault()">Facebook</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div style="font-weight:800">Sierraland Football Agency</div>
+        <div class="muted" style="margin-top:6px">&copy; <span id="year"></span> — All rights reserved.</div>
+      </div>
+      <div class="muted">
+        <a href="#" id="ghFooter" onclick="event.preventDefault()">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const players = [
+      { id:1, name:"Alhaji K.", age: 31, position:"Forward", club:"Randers FC", image:"./images/Alhaji Kamara.JPG", history:["Sheriff Tiraspol (2015-2018)","CoastalD.C United State (2018-2021)"] },
+      { id:2, name:"Bundu", age:28, position:"Forward", club:"Hannover 96", image:"./images/Bundu.webp", history:["Craig Bellamy Academy (2010-2014)","Plymouth Argyle F.C (2023-2025)"] },
+      { id:3, name:"Donald K.", age:23, position:"Goalkeeper", club:"FC Kallon", image:"./images/Donald Kamara.webp", history:["Lions Pride (2016-2018)"] }
+    ];
+    const matches = [
+      { id:1, date:"2025-11-02", opponent:"GC Kallon", venue:"National Stadium", time:"16:00", result:"2 - 1" },
+      { id:2, date:"2025-11-09", opponent:"Coastline", venue:"Coast Arena", time:"15:00", result:"TBD" },
+      { id:3, date:"2025-12-01", opponent:"Harbour FC", venue:"Home", time:"18:00", result:"TBD" },
+      { id:3, date:"2025-12-01", opponent:"GC Kallon", venue:"Coast Arena", time:"18:00", result:"TBD" },
+      { id:3, date:"2025-12-01", opponent:"Coastline", venue:"Home", time:"18:00", result:"TBD" },
+      { id:3, date:"2025-12-01", opponent:"Lions Pride", venue:"National Stadium", time:"18:00", result:"TBD" },
+    ];
+
+    function $(sel){return document.querySelector(sel)}
+    function $all(sel){return Array.from(document.querySelectorAll(sel))}
+
+    function showPage(pageId){
+      const pages = ['home','players','matches','about','contact'];
+      pages.forEach(p => {
+        const el = document.getElementById('page-' + p);
+        if(!el) return;
+        el.style.display = (p === pageId) ? '' : 'none';
+      });
+      const mobile = $('#mobileNav');
+      if(mobile) mobile.value = pageId;
+
+      if(window.history && window.history.pushState){
+        window.history.pushState({page:pageId}, '', '#' + pageId);
+      }
+    }
+
+    function initialRoute(){
+      const hash = location.hash.replace('#','') || 'home';
+      showPage(hash);
+    }
+
+    $all('button[data-route]').forEach(btn => {
+      btn.addEventListener('click', e => showPage(btn.dataset.route));
+    });
+    $('#mobileNav')?.addEventListener('change', e => showPage(e.target.value));
+    $('#cta-players')?.addEventListener('click', ()=> showPage('players'));
+    $('#cta-fixtures')?.addEventListener('click', ()=> showPage('matches'));
+
+    function renderPlayers(){
+      const grid = $('#playersGrid');
+      grid.innerHTML = '';
+      players.forEach(p => {
+        const card = document.createElement('article');
+        card.className = 'player card';
+        card.innerHTML = `
+          <img src="${p.image}" alt="${escapeHtml(p.name)}" style="height:170px;object-fit:cover;width:100%" />
+          <div class="meta">
+            <h3 style="margin:0">${escapeHtml(p.name)}</h3>
+            <div class="muted" style="margin-top:6px">Age: ${p.age} · Position: ${escapeHtml(p.position)}</div>
+            <div style="margin-top:6px;font-weight:600">Club: ${escapeHtml(p.club)}</div>
+            <details style="margin-top:8px"><summary>Club history</summary>
+              <ul style="margin-top:8px;padding-left:18px">
+                ${p.history.map(h => `<li>${escapeHtml(h)}</li>`).join('')}
+              </ul>
+            </details>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function renderMatches(){
+      const tbody = $('#matchesTableBody');
+      tbody.innerHTML = matches.map(m => `
+        <tr>
+          <td>${m.date}</td>
+          <td>${escapeHtml(m.opponent)}</td>
+          <td>${escapeHtml(m.venue)}</td>
+          <td>${m.time}</td>
+          <td style="font-weight:700">${escapeHtml(m.result)}</td>
+        </tr>
+      `).join('');
+    }
+    $('#contactForm')?.addEventListener('submit', function(e){
+      e.preventDefault();
+      const name = this.name.value.trim();
+      const email = this.email.value.trim();
+      const message = this.message.value.trim();
+      const status = $('#contactStatus');
+
+      if(!name || !email || !message){
+        status.textContent = 'Please fill all fields.';
+        status.style.color = 'crimson';
+        return;
+      }
+      if(!validateEmail(email)){
+        status.textContent = 'Please enter a valid email.';
+        status.style.color = 'crimson';
+        return;
+      }
+
+      status.textContent = 'Sending…';
+      status.style.color = 'var(--muted)';
+      setTimeout(() => {
+        status.textContent = 'Message sent — we will contact you soon.';
+        status.style.color = 'green';
+        this.reset();
+      }, 800);
+    });
+
+    $('#copyEmail')?.addEventListener('click', function(){
+      const email = 'info@sierralandfa.example';
+      if(navigator.clipboard){
+        navigator.clipboard.writeText(email).then(()=> {
+          this.textContent = 'Copied!';
+          setTimeout(()=> this.textContent = 'Copy Email', 1400);
+        });
+      } else {
+        prompt('Copy email', email);
+      }
+    });
+
+    function escapeHtml(s){
+      return String(s).replace(/[&<>"']/g, function(m){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]) });
+    }
+
+    function validateEmail(email){
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    window.addEventListener('popstate', function(e){
+      const p = (location.hash.replace('#','') || 'home');
+      showPage(p);
+    });
+
+    $('#github').addEventListener('click', function(e){ e.preventDefault(); window.open('https://github.com/your-repo','_blank') });
+    $('#ghFooter').addEventListener('click', function(e){ e.preventDefault(); window.open('https://github.com/your-repo','_blank') });
+    $('#repoLink').addEventListener('click', function(e){ e.preventDefault(); window.open('https://github.com/your-repo','_blank') });
+
+    renderPlayers();
+    renderMatches();
+    initialRoute();
+
+    function navigateTo(page){
+      showPage(page);
+    }
+    window.navigateTo = navigateTo;
+
+  </script>
+</body>
+</html>
